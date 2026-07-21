@@ -59,12 +59,15 @@ def obtener_reader():
     """Inicializa EasyOCR (solo la primera vez, después reutiliza)."""
     global _reader
     if _reader is None:
-        import easyocr
-        print("[...] Cargando modelo EasyOCR (primera vez puede tardar)...")
-        # gpu=False para Render/servidores sin GPU
-        use_gpu = os.environ.get('USE_GPU', 'false').lower() == 'true'
-        _reader = easyocr.Reader(['es', 'en'], gpu=use_gpu)
-        print(f"[✓] EasyOCR listo (GPU: {use_gpu}).")
+        try:
+            import easyocr
+            print("[...] Cargando modelo EasyOCR...")
+            use_gpu = os.environ.get('USE_GPU', 'false').lower() == 'true'
+            _reader = easyocr.Reader(['es', 'en'], gpu=use_gpu)
+            print(f"[✓] EasyOCR listo (GPU: {use_gpu}).")
+        except ImportError:
+            print("[!] EasyOCR no instalado. Usar PaddleOCR en api_comprobante.py")
+            return None
     return _reader
 
 
