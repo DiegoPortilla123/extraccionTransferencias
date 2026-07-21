@@ -30,9 +30,8 @@ def obtener_ocr():
     """Inicializa PaddleOCR (solo la primera vez)."""
     global _ocr
     if _ocr is None:
+        print("[...] Cargando PaddleOCR (descargando modelos si es la primera vez)...")
         from paddleocr import PaddleOCR
-        # use_angle_cls=True para detectar texto rotado
-        # lang='es' no existe en Paddle, pero 'latin' cubre español
         _ocr = PaddleOCR(use_angle_cls=True, lang='latin', use_gpu=False, show_log=False)
         print("[✓] PaddleOCR cargado.")
     return _ocr
