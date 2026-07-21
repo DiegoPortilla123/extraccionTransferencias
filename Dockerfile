@@ -19,6 +19,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY extraer_comprobante.py .
 COPY api_comprobante.py .
 
+# Pre-descargar modelos de PaddleOCR
+RUN python -c "from paddleocr import PaddleOCR; PaddleOCR(use_angle_cls=True, lang='latin', use_gpu=False, show_log=True)"
+
 # Puerto
 EXPOSE 10000
 
