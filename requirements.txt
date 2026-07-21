@@ -2,6 +2,5 @@ flask==3.0.0
 gunicorn==21.2.0
 numpy==1.26.4
 opencv-python-headless==4.9.0.80
-paddlepaddle==2.6.2
-paddleocr==2.7.3
+easyocr==1.7.1
 Pillow>=9.0.0
